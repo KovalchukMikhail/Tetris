@@ -50,7 +50,7 @@ namespace Tetris
                 if (type == 0)
                 {
                     Line temp = new Line(countX, countY); // создается экземпляр класса Line
-                    map = FillMap(map, temp.currentPosition); // в данной строчке сравниваются состояния игровога поля и всем участкам занятым ранее упавшими фигурами присваивается значения из массива temp.currentPosition 
+                    map = FillMap(map, temp.currentPosition); // в данной строчке сравниваются состояния игровога поля и всем участкам не занятым ранее упавшими фигурами присваивается значения из массива temp.currentPosition 
                     Draw(map, stuffColor); // отрисовывается текущее состояние поля
                     while (true)
                     {
