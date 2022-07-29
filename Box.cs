@@ -1,6 +1,7 @@
 ﻿
 namespace Tetris
 {
+    //Класс реализующий квадрат
     public class Box
     {
         public int tipe = 0;

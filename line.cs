@@ -1,6 +1,7 @@
 ﻿
 namespace Tetris
 {
+    //Класс реализующий линию
     public class Line
     {
         public int tipe = 0;

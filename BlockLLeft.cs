@@ -1,6 +1,7 @@
 ﻿
 namespace Tetris
 {
+    //Класс реализующий левый L блок
     public class BlockLLeft
     {
         public int tipe = 0;
