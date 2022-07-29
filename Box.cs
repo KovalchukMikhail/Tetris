@@ -1,9 +1,4 @@
-﻿// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-
+﻿
 namespace Tetris
 {
     public class Box
@@ -15,7 +10,7 @@ namespace Tetris
         public int[] thirdPixelPosition = new int[2]; // массив для записи индексов положения третьег пикселя в общем массиве
         public int[] fourthPixelPosition = new int[2]; // массив для записи индексов положения четвертого пикселя в общем массиве
 
-        public Box(int initialX, int initialY) //конструктор для линии которая будет появляться в начале каждого раунда
+        public Box(int initialX, int initialY) //конструктор для элемента который появляется в начале раунда
         {
             for (int i = 0; i < 10; i++) // цикл для заполнения массива currentPosition 
             {
@@ -53,25 +48,25 @@ namespace Tetris
             return result;
         }
 
-        public void MoveDown()
+        public void MoveDown() //метод реализующий движение вниз.
         {
-
+// элементам массива которые заняты на данный момент присваивается значение 0
             currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
             currentPosition[secondPixelPosition[0], secondPixelPosition[1]] = 0;
             currentPosition[thirdPixelPosition[0], thirdPixelPosition[1]] = 0;
             currentPosition[fourthPixelPosition[0], fourthPixelPosition[1]] = 0;
-
+// элементам массива которые занимаются при движении присваивается не нулевое значение
             currentPosition[firstPixelPosition[0], firstPixelPosition[1] + 1] = 1;
             currentPosition[secondPixelPosition[0], secondPixelPosition[1] + 1] = 2;
             currentPosition[thirdPixelPosition[0], thirdPixelPosition[1] + 1] = 3;
             currentPosition[fourthPixelPosition[0], fourthPixelPosition[1] + 1] = 4;
-
+//В массивах хранящих адрес каждого элемента в массиве currentPosition актуализируются значения
             firstPixelPosition = Check(1, currentPosition);
             secondPixelPosition = Check(2, currentPosition);
             thirdPixelPosition = Check(3, currentPosition);
             fourthPixelPosition = Check(4, currentPosition);
         }
-        public void MoveLeft()
+        public void MoveLeft() // см. комментарии к движению вниз
         {
 
             currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
@@ -89,7 +84,7 @@ namespace Tetris
             thirdPixelPosition = Check(3, currentPosition);
             fourthPixelPosition = Check(4, currentPosition);
         }
-        public void MoveRight()
+        public void MoveRight() // см. комментарии к движению вниз
         {
 
             currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;

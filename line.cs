@@ -1,9 +1,4 @@
-﻿// using System;
-// using System.Collections.Generic;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-
+﻿
 namespace Tetris
 {
     public class Line
@@ -53,25 +48,25 @@ namespace Tetris
             return result;
         }
      
-        public void MoveDown ()
+        public void MoveDown () //метод реализующий движение вниз.
         {
-
+// элементам массива которые заняты на данный момент присваивается значение 0
                 currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
                 currentPosition[secondPixelPosition[0], secondPixelPosition[1]] = 0;
                 currentPosition[thirdPixelPosition[0], thirdPixelPosition[1]] = 0;
                 currentPosition[fourthPixelPosition[0], fourthPixelPosition[1]] = 0;
-
+// элементам массива которые занимаются при движении присваивается не нулевое значение
                 currentPosition[firstPixelPosition[0], firstPixelPosition[1] + 1] = 1;
                 currentPosition[secondPixelPosition[0], secondPixelPosition[1] + 1] = 2;
                 currentPosition[thirdPixelPosition[0], thirdPixelPosition[1] + 1] = 3;
                 currentPosition[fourthPixelPosition[0], fourthPixelPosition[1] + 1] = 4;
-
+//В массивах хранящих адрес каждого элемента в массиве currentPosition актуализируются значения
                 firstPixelPosition = Check(1, currentPosition);
                 secondPixelPosition = Check(2, currentPosition);
                 thirdPixelPosition = Check(3, currentPosition);
                 fourthPixelPosition = Check(4, currentPosition);
         }
-        public void MoveLeft()
+        public void MoveLeft() // см. комментарии к движению вниз
         {
 
             currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
@@ -89,7 +84,7 @@ namespace Tetris
             thirdPixelPosition = Check(3, currentPosition);
             fourthPixelPosition = Check(4, currentPosition);
         }
-        public void MoveRight()
+        public void MoveRight() // см. комментарии к движению вниз
         {
 
             currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
@@ -107,13 +102,11 @@ namespace Tetris
             thirdPixelPosition = Check(3, currentPosition);
             fourthPixelPosition = Check(4, currentPosition);
         }
-        public void MoveChange()
+        public void MoveChange() // метод реализующий поворот фигуры. вначале проверяет возможен ли поворот а потом все аналогично комментариям к движению вниз
         {
             if (tipe == 0)
             {
-                if(firstPixelPosition[1] + 3 < currentPosition.GetLength(1)
-                    && secondPixelPosition[1] + 2 < currentPosition.GetLength(1)
-                    && thirdPixelPosition[1] + 1 < currentPosition.GetLength(1))
+                if(firstPixelPosition[1] + 3 < currentPosition.GetLength(1))
                 {
                     currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
                     currentPosition[secondPixelPosition[0], secondPixelPosition[1]] = 0;
@@ -135,9 +128,7 @@ namespace Tetris
             }
             else
             {
-                if(secondPixelPosition[0] + 1 < currentPosition.GetLength(0)
-                    && thirdPixelPosition[0] + 2 < currentPosition.GetLength(0)
-                    && fourthPixelPosition[0] + 3 < currentPosition.GetLength(0))
+                if(fourthPixelPosition[0] + 3 < currentPosition.GetLength(0))
                 {
                     currentPosition[firstPixelPosition[0], firstPixelPosition[1]] = 0;
                     currentPosition[secondPixelPosition[0], secondPixelPosition[1]] = 0;
