@@ -20,19 +20,12 @@ namespace Tetris
             ConsoleColor stuffColor = ConsoleColor.Green; // Переменная содержащая цвет символов
             int[,] map = new int[mapWidth, mapHeight]; // Массив отражает текущее состояние игрового поля (0 ячейкас свободна. 1-4 ячейки заняты элементом фгуры с соответствующим номером. 5 ячейка занята элементом старых фигур)  
 
-            // ниже массив заполняется 0 что следовательно игравое поле пустое
-            for (int i = 0; i < map.GetLength(0); i++)
-            {
-                for (int j = 0; j < map.GetLength(1); j++)
-                {
-                    map[i, j] = 0;
-                }
-            }
+
             int countX = 3; // переменная содержащая начальное положение первого элемента фигуры по оси Х (строки)
             int countY = 0; // переменная содержащая начальное положение первого элемента фигуры по оси У (столбцы)
             int score = 0; // переменная содержащая начальное количество очков
             int type; // переменная в которую будет записан номер типа фигуры
-            Random rand = new Random(); // Экземпляр класса для создания случайного числа
+            //Random rand = new Random(); // Экземпляр класса для создания случайного числа
 
             // ниже задается размер окна
             Console.SetWindowSize(screenWidth, screenHeight);
@@ -43,8 +36,9 @@ namespace Tetris
 
             while (true) // на данный момент игра продолжается бесконечно, условий для завершения игры нет
             {
-                type = rand.Next(0, 4); // запись в переменную случайного числа
+                type = new Random().Next(0, 4); // запись в переменную случайного числа
                 Draw(map, stuffColor); // Метод отрисовывающий текущее состояние экрана
+
 
                 // дальше в зависимости от значения переменной type выбирается одна из фигур
                 if (type == 0)
@@ -52,6 +46,7 @@ namespace Tetris
                     Line temp = new Line(countX, countY); // создается экземпляр класса Line
                     map = FillMap(map, temp.currentPosition); // в данной строчке сравниваются состояния игровога поля и всем участкам не занятым ранее упавшими фигурами присваивается значения из массива temp.currentPosition 
                     Draw(map, stuffColor); // отрисовывается текущее состояние поля
+                    Thread.Sleep(interval); // приостановка программы на время записанное в переменной interval в милисекундах
                     while (true)
                     {
                         if (Console.KeyAvailable == false) // если нет нажатия клавиши то при выполнении условий происходит двежение вниз
@@ -258,6 +253,7 @@ namespace Tetris
                     Box temp = new Box(countX, countY);
                     map = FillMap(map, temp.currentPosition);
                     Draw(map, stuffColor);
+                    Thread.Sleep(interval);
                     while (true)
                     {
                         if (Console.KeyAvailable == false)
@@ -402,6 +398,7 @@ namespace Tetris
                     BlockLRight temp = new BlockLRight(countX, countY);
                     map = FillMap(map, temp.currentPosition);
                     Draw(map, stuffColor);
+                    Thread.Sleep(interval);
                     while (true)
                     {
                         if (Console.KeyAvailable == false)
@@ -601,6 +598,7 @@ namespace Tetris
                     BlockLLeft temp = new BlockLLeft(countX, countY);
                     map = FillMap(map, temp.currentPosition);
                     Draw(map, stuffColor);
+                    Thread.Sleep(interval);
                     while (true)
                     {
                         if (Console.KeyAvailable == false)
